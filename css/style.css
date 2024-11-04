@@ -1,0 +1,157 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root variables for theme switching */
+:root {
+    --bg-color-light: #ffffff; /* White background for better contrast */
+    --text-color-light: #222222; /* Darker text for contrast */
+    --link-color-light: #0056b3; /* Dark blue for links */
+    --header-color-light: #004085; /* Darker blue for headers */
+    --bg-color-dark: #1a1a1a; /* Dark gray for dark mode background */
+    --text-color-dark: #e0e0e0; /* Light gray text for dark mode */
+    --link-color-dark: #80c1ff; /* Light blue for links in dark mode */
+    --header-color-dark: #3333cc; /* Dark blue for headers in dark mode for better contrast */
+    --table-header-dark: #2a2a2a; /* Slightly darker table header for dark mode */
+    --contrast-bg: #ffffff;
+    --contrast-text: #ff0000;
+}
+
+/* Base body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    line-height: 1.6;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Link styles */
+a {
+    color: var(--link-color-light);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-mode a {
+    color: var(--link-color-dark); /* Light blue font for links in dark mode */
+}
+
+body.dark-mode th, body.dark-mode td {
+    background-color: var(--table-header-dark);
+    color: #e0e0e0;
+}
+
+/* High Contrast Mode */
+body.high-contrast-mode {
+    background-color: var(--contrast-bg);
+    color: var(--contrast-text);
+}
+
+/* Sticky Header */
+header {
+    background-color: var(--header-color-light);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    z-index: 1000;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+body.dark-mode header {
+    background-color: var(--header-color-dark);
+}
+
+/* Table Styling for Mobile-First Design */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    overflow-x: auto;
+    display: block;
+}
+
+/* Table headers */
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #dddddd;
+}
+
+/* Alternating Row Colors */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Dark mode alternating row colors */
+body.dark-mode tr:nth-child(even) {
+    background-color: #333333;
+}
+
+/* Sticky Table Headers */
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--header-color-light);
+    color: white;
+    z-index: 1;
+}
+body.dark-mode thead th {
+    background-color: var(--header-color-dark);
+    color: #e0e0e0; /* Lighter text color for better contrast */
+}
+
+/* Responsive design for touch-like hover effect on rows */
+tr:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+body.dark-mode tr:hover {
+    background-color: #444444;
+}
+
+/* Animations for smooth transitions */
+@media (prefers-reduced-motion: no-preference) {
+    a {
+        transition: color 0.3s;
+    }
+    tr {
+        transition: background-color 0.3s;
+    }
+}
+
+/* Mobile-specific gallery layout */
+#gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+
+/* Styling for gallery images */
+.gallery-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+.gallery-image:hover {
+    transform: scale(1.05);
+}
