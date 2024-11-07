@@ -60,7 +60,7 @@ def gen_athlete_page(data, outfile):
    <a href = "#main">Skip to Main Content</a>
    <nav>
      <ul>
-        <li><a href="index.html">Home Page</a></li>
+        <li><a href="../index.html">Home Page</a></li>
         <li><a href="mens.html">Men's Team</a></li>
         <li><a href="womens.html">Women's Team</a></li>
      </ul>

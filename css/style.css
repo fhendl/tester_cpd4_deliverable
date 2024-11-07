@@ -5,19 +5,22 @@
     box-sizing: border-box;
 }
 
-/* Root variables for theme switching */
+/* Root variables for theme switching and spacing */
 :root {
-    --bg-color-light: #ffffff; /* White background for better contrast */
-    --text-color-light: #222222; /* Darker text for contrast */
-    --link-color-light: #0056b3; /* Dark blue for links */
-    --header-color-light: #004085; /* Darker blue for headers */
-    --bg-color-dark: #1a1a1a; /* Dark gray for dark mode background */
-    --text-color-dark: #e0e0e0; /* Light gray text for dark mode */
-    --link-color-dark: #80c1ff; /* Light blue for links in dark mode */
-    --header-color-dark: #3333cc; /* Dark blue for headers in dark mode for better contrast */
-    --table-header-dark: #2a2a2a; /* Slightly darker table header for dark mode */
+    --bg-color-light: #ffffff;
+    --text-color-light: #222222;
+    --link-color-light: #0056b3;
+    --header-color-light: #004085;
+    --bg-color-dark: #1a1a1a;
+    --text-color-dark: #e0e0e0;
+    --link-color-dark: #80c1ff;
+    --header-color-dark: #3333cc;
+    --table-header-dark: #2a2a2a;
     --contrast-bg: #ffffff;
     --contrast-text: #ff0000;
+    --padding-small: 10px;
+    --padding-medium: 20px;
+    --padding-large: 30px;
 }
 
 /* Base body styles */
@@ -26,8 +29,26 @@ body {
     background-color: var(--bg-color-light);
     color: var(--text-color-light);
     line-height: 1.6;
-    padding: 10px;
+    padding: var(--padding-small);
     transition: background-color 0.3s, color 0.3s;
+}
+
+/* Reusable Classes */
+.flex-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.smooth-transition {
+    transition: all 0.3s ease;
 }
 
 /* Link styles */
@@ -39,19 +60,23 @@ a:hover {
     text-decoration: underline;
 }
 
+h1 a, h1 a:visited {
+    color: white;
+}
+
 /* Dark Mode */
 body.dark-mode {
     background-color: var(--bg-color-dark);
     color: var(--text-color-dark);
 }
 
-body.dark-mode a {
-    color: var(--link-color-dark); /* Light blue font for links in dark mode */
-}
-
-body.dark-mode th, body.dark-mode td {
-    background-color: var(--table-header-dark);
+body.dark-mode a,
+body.dark-mode tr:nth-child(even),
+body.dark-mode thead th,
+body.dark-mode th,
+body.dark-mode td {
     color: #e0e0e0;
+    background-color: var(--table-header-dark);
 }
 
 /* High Contrast Mode */
@@ -65,7 +90,7 @@ header {
     background-color: var(--header-color-light);
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: var(--padding-medium);
     position: sticky;
     top: 0;
     width: 100vw;
@@ -81,14 +106,14 @@ body.dark-mode header {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: var(--padding-medium) 0;
     overflow-x: auto;
     display: block;
 }
 
 /* Table headers */
 th, td {
-    padding: 12px 15px;
+    padding: var(--padding-medium);
     text-align: left;
     border: 1px solid #dddddd;
 }
@@ -96,11 +121,6 @@ th, td {
 /* Alternating Row Colors */
 tr:nth-child(even) {
     background-color: #f9f9f9;
-}
-
-/* Dark mode alternating row colors */
-body.dark-mode tr:nth-child(even) {
-    background-color: #333333;
 }
 
 /* Sticky Table Headers */
@@ -113,7 +133,6 @@ thead th {
 }
 body.dark-mode thead th {
     background-color: var(--header-color-dark);
-    color: #e0e0e0; /* Lighter text color for better contrast */
 }
 
 /* Responsive design for touch-like hover effect on rows */
@@ -127,24 +146,17 @@ body.dark-mode tr:hover {
 
 /* Animations for smooth transitions */
 @media (prefers-reduced-motion: no-preference) {
-    a {
-        transition: color 0.3s;
-    }
-    tr {
-        transition: background-color 0.3s;
+    .smooth-transition {
+        transition: all 0.3s ease;
     }
 }
 
 /* Mobile-specific gallery layout */
 #gallery-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
-    padding: 20px;
+    padding: var(--padding-medium);
+    /* Uses reusable grid class for layout */
 }
-
-/* Styling for gallery images */
-.gallery-image {
+#gallery-container .gallery-image {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -152,6 +164,253 @@ body.dark-mode tr:hover {
     border-radius: 5px;
     transition: transform 0.2s;
 }
-.gallery-image:hover {
+#gallery-container .gallery-image:hover {
     transform: scale(1.05);
+}
+#gallery-container img[alt="Thumbnail 1"] {
+    width: 100px; /* Adjust width for the first image */
+    height: auto;
+}
+
+#gallery-container img[alt="Thumbnail 2"] {
+    width: 100px; /* Adjust width for the second image */
+    height: auto;
+}
+
+/* Basic card styling */
+.card {
+    width: 300px;
+    height: 200px;
+    overflow: auto;
+    transition: height 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+}
+
+/* Style for the preview section */
+.card-preview {
+    padding: 1rem;
+}
+
+/* Style for the expanded section (hidden by default) */
+.card.expanded {
+    height: auto; /* Allows the card to adjust based on content */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Expanded card styling */
+.card.expanded {
+    height: 400px; /* Increase height when expanded */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card.expanded .card-expanded {
+    display: block; /* Show the expanded section */
+}
+.split-screen {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+}
+
+.split-section {
+    padding: 20px;
+    overflow-y: auto; /* Allows scrolling within each section */
+}
+
+#sidebar {
+    width: 25%; /* Initial width of the sidebar */
+    background-color: #f4f4f4;
+}
+
+#mainContent {
+    width: 75%; /* Initial width of the main content area */
+    background-color: #ffffff;
+}
+
+.resizer {
+    width: 5px;
+    background-color: #ccc;
+    cursor: col-resize; /* Cursor changes to indicate resizable bar */
+}
+.bold-link {
+    font-weight: bold;
+}
+/* Styling for athlete profile container */
+athlete.div {
+    display: inline-block; /* Allows multiple athletes to display side by side */
+    width: 200px; /* Sets a consistent width for each profile */
+    margin: 15px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for athlete images */
+athlete.div img {
+    border-radius: 8px; /* Rounds the corners */
+    width: 100%; /* Makes the image fit the container width */
+    height: auto; /* Maintains aspect ratio */
+    margin-bottom: 10px;
+}
+
+/* Styling for the caption (athlete's name) under the image */
+athlete.div figcaption {
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+/* Definition list styling to create a table-like layout with borders */
+athlete.div dl {
+    display: table; /* Treats the dl as a table */
+    width: 100%; /* Ensures the dl takes full width */
+    margin: 0;
+    border-collapse: collapse; /* Ensures borders are collapsed like a table */
+}
+
+/* Styling each dt/dd pair to look like a table row */
+athlete.div dt, athlete.div dd {
+    display: table-cell; /* Each dt/dd pair acts as a cell */
+    padding: 5px;
+    border: 1px solid #ddd; /* Adds border around each cell */
+}
+
+/* Styling for definition terms (left column) */
+athlete.div dt {
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+    width: 50%; /* Left column width */
+}
+
+/* Styling for definition descriptions (right column) */
+athlete.div dd {
+    text-align: right;
+    color: #333;
+    width: 50%; /* Right column width */
+}
+
+/* Section styling for better readability */
+#individual-results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+#individual-results h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* General styling for body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling for main navigation links */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: start; /* Default: align left for mobile */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #007bff;
+}
+
+/* Centering for the header text */
+header h1, header h2 {
+    margin: 0;
+    padding: 10px 0;
+    text-align: left; /* Default alignment for mobile */
+}
+
+/* --- Responsive Design Section --- */
+
+/* For tablets (min-width: 768px) */
+@media (min-width: 768px) {
+    nav ul {
+        justify-content: center; /* Center navigation for tablet */
+    }
+
+    header h1, header h2 {
+        text-align: center; /* Center-align header for tablet */
+    }
+}
+
+/* For desktops (min-width: 1024px) */
+@media (min-width: 1024px) {
+    nav ul {
+        justify-content: center; /* Center navigation */
+    }
+
+    header h1, header h2 {
+        text-align: center; /* Center-align header */
+    }
+
+    main {
+        margin: 0 auto; /* Centers main content on desktop */
+        padding: 0 15%; 
+    }
+}
+/* Dark Mode Adjustments for Split View */
+body.dark-mode #sidebar {
+    background-color: var(--table-header-dark); /* Dark background for sidebar */
+    color: var(--text-color-dark); /* Light text for contrast */
+}
+
+body.dark-mode #mainContent {
+    background-color: var(--bg-color-dark); /* Dark background for main content */
+    color: var(--text-color-dark); /* Light text for contrast */
+}
+
+/* Styling links, table headers, and rows in dark mode inside the split view */
+body.dark-mode #sidebar a, 
+body.dark-mode #mainContent a {
+    color: var(--link-color-dark); /* Adjust link color in dark mode */
+}
+
+body.dark-mode #sidebar th, 
+body.dark-mode #mainContent th, 
+body.dark-mode #sidebar td, 
+body.dark-mode #mainContent td {
+    color: var(--text-color-dark); /* Text color for table elements */
+    background-color: var(--table-header-dark); /* Background for table headers and cells */
+    border: 1px solid #444; /* Border for better visibility in dark mode */
+}
+
+/* Hover effect for table rows in dark mode */
+body.dark-mode #sidebar tr:hover, 
+body.dark-mode #mainContent tr:hover {
+    background-color: #333; /* Darker shade on hover */
+}
+
+/* Border adjustment for split sections in dark mode */
+body.dark-mode #sidebar,
+body.dark-mode #mainContent {
+    border: 1px solid #555; /* Subtle border around split sections */
 }
