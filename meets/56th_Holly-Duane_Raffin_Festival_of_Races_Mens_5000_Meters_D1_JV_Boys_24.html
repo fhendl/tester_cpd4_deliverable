@@ -373,7 +373,8 @@
    </section>
    </main>   
    <footer>
-                     <p>
+                     <p>             <button id="mode-toggle" onclick="toggleMode()">Switch to Dark Mode</button>
+
                      Skyline High School<br>
                      <address>
                      2552 North Maple Road<br>
@@ -384,6 +385,39 @@
 
 
                      </footer>
+                <script>
+        // JavaScript for toggle functionality with optional local storage
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedMode = localStorage.getItem('mode');
+            const body = document.body;
+            const toggleButton = document.getElementById('mode-toggle');
+    
+            if (savedMode === 'dark-mode') {
+                body.classList.add('dark-mode');
+                toggleButton.textContent = 'Switch to Light Mode';
+            } else {
+                body.classList.add('light-mode');
+                toggleButton.textContent = 'Switch to Dark Mode';
+            }
+        });
+    
+        function toggleMode() {
+            const body = document.body;
+            const toggleButton = document.getElementById('mode-toggle');
+    
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                toggleButton.textContent = 'Switch to Light Mode';
+                localStorage.setItem('mode', 'dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                toggleButton.textContent = 'Switch to Dark Mode';
+                localStorage.setItem('mode', 'light-mode');
+            }
+        }
+    </script>
             <script src="../js/imagePlaceholder.js"></script>
             <script src="../dist/js/lightbox-plus-jquery.js"></script> <!-- Lightbox with jQuery included -->
         </body>
