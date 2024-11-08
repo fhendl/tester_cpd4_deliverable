@@ -139,7 +139,6 @@ def gen_athlete_page(data, outfile):
                         </table>
                      </section>
                      <section id = "gallery">
-                     <h2>Gallery</h2>
                      <a href="#" id="open-gallery">Click here to view the gallery</a>
                      <div id="gallery-container"></div> <!-- Container for the images -->
                       </section>

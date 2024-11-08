@@ -4,18 +4,18 @@ console.log("JavaScript file is linked!");
 // Function to adjust layout based on screen width
 function adjustLayout() {
     if (window.innerWidth >= 1440) { // Extra-large screens
-        document.body.style.fontSize = "1.8em";
+        document.body.style.fontSize = "1.4em";
         document.querySelectorAll(".container").forEach((element) => {
             element.style.padding = "2.5rem";
         });
     } else if (window.innerWidth >= 1024) { // Large screens
-        document.body.style.fontSize = "1.5em";
+        document.body.style.fontSize = "1.0em";
         document.querySelectorAll(".container").forEach((element) => {
             element.style.padding = "2rem";
         });
     } else {
         // Small screens (default)
-        document.body.style.fontSize = "1em";
+        document.body.style.fontSize = "0.8em";
         document.querySelectorAll(".container").forEach((element) => {
             element.style.padding = "1rem";
         });
@@ -67,3 +67,5 @@ document.addEventListener("mouseup", () => {
     isResizing = false;
     document.body.style.cursor = "default"; // Reset cursor
 });
+
+

@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ann Arbor Skyline Meets</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="css/lightbox.css" rel="stylesheet" />
+    <link href="dist/css/lightbox.css" rel="stylesheet" />
 </head>
 <body>
     <header>
-        <h1>Ann Arbor Skyline</h1>
+        <h1>Ann Arbor Skyline
+            <button id="mode-toggle" onclick="toggleMode()">Switch to Dark Mode</button>
+            <section id="expandable-cards">
+        </h1>
     </header>
     <section class="split-screen">
         <div id="sidebar" class="split-section">
-            <h2>Sidebar</h2>
             <section id="meetList">
                 <h2>Meets</h2>
                 <table id="meet-table">
@@ -49,7 +51,6 @@
             </section>        </div>
         <div id="resizer" class="resizer"></div>
         <div id="mainContent" class="split-section">
-            <h2>Main Content</h2>
             <p><section id="Roster">
                 <h2>Roster</h2>
                 <h3>Women's Team</h3>
@@ -157,8 +158,7 @@
     </section>
     
     <footer>
-        <button id="mode-toggle" onclick="toggleMode()">Switch to Dark Mode</button>
-        <section id="expandable-cards">
+
     <h2>More Information!</h2>
 
     <div class="card" tabindex="0">
@@ -178,18 +178,19 @@
             <h3>Special Thank You Message(Click Me)</h3>
         </div>
         <div class="card-expanded">
-            <p>We wanted to give a special thank you to the creator of this  page, Filip Hendl, he deserves an A on this assignment!!</p>
+            <p>We wanted to give a special thank you to the creator of this  page, Filip Hendl, he's super cool!</p>
         </div>
 
     </div>
     <section id="gallery">
             <h2>Gallery</h2>
             <div id="gallery-container">
-                <a href="images/default_image.jpg" data-lightbox="gallery" data-title="Image Caption 1">
+                <a href="images/default_image.jpg" target ="_blank" data-lightbox="gallery" data-title="Image Caption 1" data-alt="Blanket Runner Icon Image">
                     <img src="images/default_image.jpg" alt="Thumbnail 1">
                 </a>
-                <a href="images/profiles/21142901.jpg" data-lightbox="gallery" data-title="Image Caption 2">
+                <a href="images/profiles/21142901.jpg" target ="_blank" data-lightbox="gallery" data-title="Image Caption 2" data-alt="Picture of Girl Running">
                     <img src="images/profiles/21142901.jpg" alt="Thumbnail 2">
+
                 </a>
                 <!-- Add more images as needed -->
             </div>
@@ -233,7 +234,7 @@
     </script>
 <!-- Scripts at the end of body -->
 <script src="../js/main.js"></script>
-<script src="js/lightbox-plus-jquery.js"></script> <!-- Lightbox with jQuery included -->
+<script src="dist/js/lightbox-plus-jquery.js"></script> <!-- Lightbox with jQuery included -->
 
 
 

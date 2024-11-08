@@ -15,7 +15,7 @@
     --text-color-dark: #e0e0e0;
     --link-color-dark: #80c1ff;
     --header-color-dark: #3333cc;
-    --table-header-dark: #2a2a2a;
+    --table-header-dark: #2c2c2c;
     --contrast-bg: #ffffff;
     --contrast-text: #ff0000;
     --padding-small: 10px;
@@ -70,13 +70,18 @@ body.dark-mode {
     color: var(--text-color-dark);
 }
 
-body.dark-mode a,
-body.dark-mode tr:nth-child(even),
-body.dark-mode thead th,
-body.dark-mode th,
-body.dark-mode td {
-    color: #e0e0e0;
+body.dark-mode a {
+    color: var(--link-color-dark);
+}
+
+body.dark-mode th, body.dark-mode td {
+    color: var(--text-color-dark);
     background-color: var(--table-header-dark);
+    border: 1px solid #444;
+}
+
+body.dark-mode tr:hover {
+    background-color: #333;
 }
 
 /* High Contrast Mode */
@@ -111,12 +116,14 @@ table {
     display: block;
 }
 
+
 /* Table headers */
 th, td {
     padding: var(--padding-medium);
     text-align: left;
     border: 1px solid #dddddd;
 }
+
 
 /* Alternating Row Colors */
 tr:nth-child(even) {
@@ -154,7 +161,6 @@ body.dark-mode tr:hover {
 /* Mobile-specific gallery layout */
 #gallery-container {
     padding: var(--padding-medium);
-    /* Uses reusable grid class for layout */
 }
 #gallery-container .gallery-image {
     width: 100%;
@@ -167,13 +173,8 @@ body.dark-mode tr:hover {
 #gallery-container .gallery-image:hover {
     transform: scale(1.05);
 }
-#gallery-container img[alt="Thumbnail 1"] {
-    width: 100px; /* Adjust width for the first image */
-    height: auto;
-}
-
-#gallery-container img[alt="Thumbnail 2"] {
-    width: 100px; /* Adjust width for the second image */
+#gallery-container img[alt^="Thumbnail"] {
+    width: 100px;
     height: auto;
 }
 
@@ -190,59 +191,46 @@ body.dark-mode tr:hover {
     margin: 10px;
 }
 
-/* Style for the preview section */
-.card-preview {
-    padding: 1rem;
-}
-
-/* Style for the expanded section (hidden by default) */
-.card.expanded {
-    height: auto; /* Allows the card to adjust based on content */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
 /* Expanded card styling */
 .card.expanded {
-    height: 400px; /* Increase height when expanded */
+    height: 400px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.card.expanded .card-expanded {
-    display: block; /* Show the expanded section */
-}
 .split-screen {
     display: flex;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     overflow: hidden;
 }
 
 .split-section {
-    padding: 20px;
-    overflow-y: auto; /* Allows scrolling within each section */
+    padding: var(--padding-medium);
+    overflow-y: auto;
 }
 
 #sidebar {
-    width: 25%; /* Initial width of the sidebar */
+    width: 25%;
     background-color: #f4f4f4;
 }
 
 #mainContent {
-    width: 75%; /* Initial width of the main content area */
+    width: 75%;
     background-color: #ffffff;
 }
 
 .resizer {
     width: 5px;
     background-color: #ccc;
-    cursor: col-resize; /* Cursor changes to indicate resizable bar */
+    cursor: col-resize;
 }
 .bold-link {
     font-weight: bold;
 }
+
 /* Styling for athlete profile container */
 athlete.div {
-    display: inline-block; /* Allows multiple athletes to display side by side */
-    width: 200px; /* Sets a consistent width for each profile */
+    display: inline-block;
+    width: 200px;
     margin: 15px;
     text-align: center;
     background-color: #f9f9f9;
@@ -251,16 +239,19 @@ athlete.div {
     padding: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+.athlete dt, .athlete dd {
+    display: inline-block;
+    padding: 1;
+    margin-right:8px;
+}
 
-/* Styling for athlete images */
 athlete.div img {
-    border-radius: 8px; /* Rounds the corners */
-    width: 100%; /* Makes the image fit the container width */
-    height: auto; /* Maintains aspect ratio */
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
     margin-bottom: 10px;
 }
 
-/* Styling for the caption (athlete's name) under the image */
 athlete.div figcaption {
     font-weight: bold;
     margin-top: 5px;
@@ -268,37 +259,32 @@ athlete.div figcaption {
     color: #333;
 }
 
-/* Definition list styling to create a table-like layout with borders */
 athlete.div dl {
-    display: table; /* Treats the dl as a table */
-    width: 100%; /* Ensures the dl takes full width */
+    display: table;
+    width: 100%;
     margin: 0;
-    border-collapse: collapse; /* Ensures borders are collapsed like a table */
+    border-collapse: collapse;
 }
 
-/* Styling each dt/dd pair to look like a table row */
 athlete.div dt, athlete.div dd {
-    display: table-cell; /* Each dt/dd pair acts as a cell */
+    display: table-cell;
     padding: 5px;
-    border: 1px solid #ddd; /* Adds border around each cell */
+    border: 1px solid #ddd;
 }
 
-/* Styling for definition terms (left column) */
 athlete.div dt {
     font-weight: bold;
     color: #555;
     text-align: left;
-    width: 50%; /* Left column width */
+    width: 50%;
 }
 
-/* Styling for definition descriptions (right column) */
 athlete.div dd {
     text-align: right;
     color: #333;
-    width: 50%; /* Right column width */
+    width: 50%;
 }
 
-/* Section styling for better readability */
 #individual-results {
     display: flex;
     flex-wrap: wrap;
@@ -313,13 +299,6 @@ athlete.div dd {
     margin-bottom: 20px;
 }
 
-/* General styling for body */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 /* Styling for main navigation links */
 nav ul {
     list-style: none;
@@ -328,7 +307,7 @@ nav ul {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: start; /* Default: align left for mobile */
+    justify-content: start;
 }
 
 nav ul li a {
@@ -346,7 +325,7 @@ nav ul li a:hover {
 header h1, header h2 {
     margin: 0;
     padding: 10px 0;
-    text-align: left; /* Default alignment for mobile */
+    text-align: left;
 }
 
 /* --- Responsive Design Section --- */
@@ -354,63 +333,127 @@ header h1, header h2 {
 /* For tablets (min-width: 768px) */
 @media (min-width: 768px) {
     nav ul {
-        justify-content: center; /* Center navigation for tablet */
+        justify-content: center;
     }
 
     header h1, header h2 {
-        text-align: center; /* Center-align header for tablet */
+        text-align: center;
     }
 }
 
 /* For desktops (min-width: 1024px) */
 @media (min-width: 1024px) {
     nav ul {
-        justify-content: center; /* Center navigation */
+        justify-content: center;
     }
 
     header h1, header h2 {
-        text-align: center; /* Center-align header */
+        text-align: center;
     }
 
     main {
-        margin: 0 auto; /* Centers main content on desktop */
+        margin: 0 auto;
         padding: 0 15%; 
     }
 }
+
 /* Dark Mode Adjustments for Split View */
-body.dark-mode #sidebar {
-    background-color: var(--table-header-dark); /* Dark background for sidebar */
-    color: var(--text-color-dark); /* Light text for contrast */
-}
-
-body.dark-mode #mainContent {
-    background-color: var(--bg-color-dark); /* Dark background for main content */
-    color: var(--text-color-dark); /* Light text for contrast */
-}
-
-/* Styling links, table headers, and rows in dark mode inside the split view */
-body.dark-mode #sidebar a, 
-body.dark-mode #mainContent a {
-    color: var(--link-color-dark); /* Adjust link color in dark mode */
-}
-
-body.dark-mode #sidebar th, 
-body.dark-mode #mainContent th, 
-body.dark-mode #sidebar td, 
-body.dark-mode #mainContent td {
-    color: var(--text-color-dark); /* Text color for table elements */
-    background-color: var(--table-header-dark); /* Background for table headers and cells */
-    border: 1px solid #444; /* Border for better visibility in dark mode */
-}
-
-/* Hover effect for table rows in dark mode */
-body.dark-mode #sidebar tr:hover, 
-body.dark-mode #mainContent tr:hover {
-    background-color: #333; /* Darker shade on hover */
-}
-
-/* Border adjustment for split sections in dark mode */
 body.dark-mode #sidebar,
 body.dark-mode #mainContent {
-    border: 1px solid #555; /* Subtle border around split sections */
+    background-color: var(--table-header-dark);
+    color: var(--text-color-dark);
+    border: 1px solid #555;
+}
+
+body.dark-mode #sidebar a, 
+body.dark-mode #mainContent a {
+    color: var(--link-color-dark);
+}
+/* Basic footer styling */
+footer {
+    background-color: #f4f4f4; /* Light background color */
+    color: #333; /* Text color */
+    padding: 20px;
+    text-align: center; /* Center-align content on small screens */
+}
+
+/* Center elements in a column for small screens */
+footer p,
+footer address,
+footer a {
+    display: block;
+    margin: 10px auto;
+}
+
+/* Flexbox layout for larger screens */
+@media (min-width: 768px) {
+    footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: left; /* Left-align content for larger screens */
+        padding: 20px 10%;
+    }
+
+    /* Separate sections in the footer */
+    footer p,
+    footer address,
+    footer a {
+        margin: 0 20px;
+    }
+}
+/* Root variables for light and dark mode */
+:root {
+    --footer-bg-light: #f4f4f4;
+    --footer-text-light: #333;
+    --footer-bg-dark: ##2c2c2c;
+    --footer-text-dark: #e0e0e0;
+}
+
+/* Basic footer styling */
+footer {
+    background-color: var(--footer-bg-light); /* Light background by default */
+    color: var(--footer-text-light); /* Light text color by default */
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Center elements in a column for small screens */
+footer p,
+footer address,
+footer a {
+    display: block;
+    margin: 10px auto;
+}
+
+/* Flexbox layout for larger screens */
+@media (min-width: 768px) {
+    footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+        padding: 20px 10%;
+    }
+
+    /* Separate sections in the footer */
+    footer p,
+    footer address,
+    footer a {
+        margin: 0 20px;
+    }
+}
+
+/* Dark Mode Styles */
+body.dark-mode footer {
+    background-color: var(--footer-bg-dark); /* Dark background */
+    color: var(--footer-text-dark); /* Light text color */
+}
+
+/* Dark Mode Styles for Links in Footer */
+body.dark-mode footer a {
+    color: var(--footer-text-dark); /* Ensure links are visible */
 }
